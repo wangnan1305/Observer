@@ -40,5 +40,11 @@ var Event = (function () {
     remove: remove
   }
 })();
+Event.listen('asdasd',function(s){
+  console.log(s)
+})
+Event.emit('asdasd',123);
+
+
 
 
