@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="sjms2.js"></script>
+</head>
+<body>
+  <button id="count">点我</button>
+  <div id="show"></div>
+</body>
+<script>
+  Event.emit( 'click', 1 );
+  Event.listen( 'click', function( a ){
+  console.log( a ); // 输出：1
+}); 
+Event.create( 'namespace1' ).listen( 'click', function( a ){
+ console.log( a ); // 输出：1
+});
+Event.create( 'namespace1' ).emit( 'click', 1 );
+Event.create( 'namespace2' ).listen( 'click', function( a ){
+ console.log( a ); // 输出：2
+});
+Event.create( 'namespace2' ).emit( 'click', 2 ); 
+</script>
+<script>
+  var a = (function(){
+    var count = 0;
+    var button = document.getElementById("count");
+    button.onclick = function(){
+      Event.emit('add',++count)
+    }
+  })();
+  var b = (function(){
+    var div = document.getElementById("show")
+    Event.listen('add',function(count){
+      div.innerHTML = count
+    })
+  })();
+</script>
+</html>
