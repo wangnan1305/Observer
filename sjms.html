@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="sjms.js"></script>
+</head>
+<body>
+  <button id="count">点我</button>
+  <div id="show"></div>
+</body>
+<script>
+  var a = (function(){
+    var count = 0;
+    var button = document.getElementById("count");
+    button.onclick = function(){
+      Event.emit('add',++count)
+    }
+  })();
+  var b = (function(){
+    var div = document.getElementById("show")
+    Event.listen('add',function(count){
+      div.innerHTML = count
+    })
+  })();
+</script>
+</html>
